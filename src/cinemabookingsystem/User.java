@@ -59,6 +59,7 @@ public class User {
         
         try {
             pw = new PrintWriter("users.txt");
+            
             BufferedWriter bw = new BufferedWriter(pw);
             bw.write(usr.getName());
 //            bw.write("Name");

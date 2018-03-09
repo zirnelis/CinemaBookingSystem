@@ -38,6 +38,7 @@ public class CinemaBookingSystem extends Application {
         /**
          * "Hello world button form example"
          */
+        //test changes
 //        Button btn = new Button();
 //        Button btn2 = new Button();
 //        btn.setText("Say 'Hello World'");
@@ -132,6 +133,7 @@ public class CinemaBookingSystem extends Application {
         createBtn.setOnAction(new EventHandler<ActionEvent>(){
             
             User usr = new User(userTextField.getText(), passTextField.getText());
+//            System.out.println(userTextField.getText() + " ");
             
             @Override
             public void handle(ActionEvent event) {
