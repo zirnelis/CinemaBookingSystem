@@ -31,10 +31,11 @@ import javafx.stage.Stage;
  * @author Elina
  */
 public class CinemaBookingSystem extends Application {
-
+    User user;
     @Override
     public void start(Stage primaryStage) {
 
+        
         /**
          * "Hello world button form example"
          */
@@ -131,19 +132,17 @@ public class CinemaBookingSystem extends Application {
          */
         
         createBtn.setOnAction(new EventHandler<ActionEvent>(){
-            
-            User usr = new User(userTextField.getText(), passTextField.getText());
-//            System.out.println(userTextField.getText() + " ");
-            
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    usr.writeNewUser(usr);
+                   user = new User(userTextField.getText(),passTextField.getText());
+                   user.writeNewUser(user);
                 } catch (IOException ex) {
                     Logger.getLogger(CinemaBookingSystem.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }); 
+
         
         /**
          * If Username and Password is correct, clear window
@@ -162,6 +161,7 @@ public class CinemaBookingSystem extends Application {
 
     }
 
+    
     /**
      * @param args the command line arguments
      */
