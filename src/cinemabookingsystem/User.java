@@ -5,10 +5,16 @@
  */
 package cinemabookingsystem;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,10 +32,12 @@ public class User {
         this.password = password;
 
     }
-
-    User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public User() {
+        this.name = "none";
+        this.password = "none";
     }
+
 
     public String getName() {
         return name;
@@ -49,33 +57,34 @@ public class User {
 
     
     /**
-     * Make new userst.txt file
+     * Make new users.txt file
      * If exists:
      * Write user info into .txt file
      */
+    public int checkUser(User usr) throws FileNotFoundException, IOException{
+        File file = new File("users.txt");
+        StringBuffer users = new StringBuffer();
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String text = null;
+        
+        // reads all lines
+        while((text = br.readLine()) != null){
+            users.append(text).append(System.getProperty("line.seperator"));
+        }
+        br.close();
+        
+        // check if user exists in .txt file
+        
+        //......
+        
+        return 0;
+    }
     
     public void writeNewUser(User usr) throws IOException {
-        PrintWriter pw = null;
-        
-        try {
-            pw = new PrintWriter("users.txt");
-            
-            BufferedWriter bw = new BufferedWriter(pw);
-            bw.write(usr.getName());
-//            bw.write("Name");
-            System.out.println("Name has been written");
-            bw.newLine();
-            bw.write(usr.getPassword());
-//            bw.write("Pass");
-            System.out.println("Password has been written");
-
-//            pw.close();
-            
-        } catch (FileNotFoundException e) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                      new FileOutputStream("users.txt"), "utf-8"))) {
+           writer.write(usr.getName()+" "+usr.getPassword()+"\n");
         }
         
     }
-    
-    
 }
