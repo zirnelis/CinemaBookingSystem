@@ -5,11 +5,16 @@
  */
 package cinemabookingsystem;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,10 +32,18 @@ public class User {
         this.password = password;
 
     }
+<<<<<<< HEAD
 
     User() {
         
+=======
+    
+    public User() {
+        this.name = "none";
+        this.password = "none";
+>>>>>>> 482d572399399c7a45c081585188bf82c25239fa
     }
+
 
     public String getName() {
         return name;
@@ -50,11 +63,12 @@ public class User {
 
     
     /**
-     * Make new userst.txt file
+     * Make new users.txt file
      * If exists:
      * Write user info into .txt file
      * @param usr
      */
+<<<<<<< HEAD
     
     public void writeNewUser(User usr) throws IOException  {
         File f = new File("users.txt");
@@ -89,10 +103,28 @@ public class User {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         } catch (IOException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+=======
+    public int checkUser(User usr) throws FileNotFoundException, IOException{
+        File file = new File("users.txt");
+        StringBuffer users = new StringBuffer();
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String text = null;
         
+        // reads all lines
+        while((text = br.readLine()) != null){
+            users.append(text).append(System.getProperty("line.seperator"));
+>>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+        }
+        br.close();
+        
+        // check if user exists in .txt file
+        
+        //......
+        
+        return 0;
     }
     
+<<<<<<< HEAD
 //    public void generateUsers() throws IOException {
 //        for (int i = 0; i < 10; i++) {
 //            String tmp = Integer.toString(i);
@@ -101,4 +133,13 @@ public class User {
 //        }
 //    }
     
+=======
+    public void writeNewUser(User usr) throws IOException {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                      new FileOutputStream("users.txt"), "utf-8"))) {
+           writer.write(usr.getName()+" "+usr.getPassword()+"\n");
+        }
+        
+    }
+>>>>>>> 482d572399399c7a45c081585188bf82c25239fa
 }
