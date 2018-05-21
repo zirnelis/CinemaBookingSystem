@@ -5,12 +5,13 @@
  */
 package database;
 
-import java.util.Properties;
+
 import java.sql.Connection;
 import com.mysql.jdbc.*;
-import java.lang.Object;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,6 +30,30 @@ public class db {
         this.pass = pass;
     }
 
+    private Connection connect() throws SQLException {
+        Connection connection = null;
+        String user = "root";
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        connection = DriverManager.getConnection(url, user, "");
+   
+        System.out.println("database connected..");
+        
+        return connection;
+    }
+    
+    public void selectFrom(String tableName, ArrayList<String> emptyArray) throws SQLException {
+        ArrayList<String> tmp = new ArrayList<>();
+        String useDB = "USE "+tableName;
+        String select = "SELECT * FROM "+tableName;
+        try (Connection conn = this.connect();
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(select)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+//                tmp.add(rs.getArray(uName));
+            }
+        }
+    }
+    
     public String getBdName() {
         return bdName;
     }
@@ -135,13 +160,11 @@ public class db {
         stmt.execute(setModeAndChecks);
         
         System.out.println("Creating tables..");
-        
     }
-
-    private Connection connect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-
     
+     public void closeDB(Connection conn) throws SQLException {
+        if(conn!=null) {
+            conn.close();
+        }
+    }
 }

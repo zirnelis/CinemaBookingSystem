@@ -42,7 +42,7 @@ import javax.swing.GroupLayout;
  * @author Elina
  */
 public class CinemaBookingSystem extends Application {
-<<<<<<< HEAD
+
    
     static GoogleMapsSample sample;
     
@@ -55,17 +55,17 @@ public class CinemaBookingSystem extends Application {
     
     static User tempUsr; //to generate users
     
-=======
+
     User user;
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-<<<<<<< HEAD
+
 //        tempUsr = new User("meh", "123");
 //        tempUsr.writeNewUser(tempUsr);
         
-=======
+
         
         /**
          * "Hello world button form example"
@@ -84,7 +84,7 @@ public class CinemaBookingSystem extends Application {
 //            }
 //        });
         // Adding Grid to Scene
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+
         GridPane loginGrid = new GridPane();
         loginGrid.setAlignment(Pos.CENTER);
         loginGrid.setHgap(10);
@@ -175,24 +175,17 @@ public class CinemaBookingSystem extends Application {
          */
         
         createBtn.setOnAction(new EventHandler<ActionEvent>(){
-<<<<<<< HEAD
-            
             User usr = new User(userTextField.getText(), passTextField.getText());
+            System.out.println(userTextField.getText()+" "+passTextField.getText());
 //            System.out.println(userTextField.getText() + " ");
             @Override
             public void handle(ActionEvent event) {
                 try {
                     System.out.println("Happens in CBS");
-                    usr.writeNewUser(usr);
-=======
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                   user = new User(userTextField.getText(),passTextField.getText());
-                   user.writeNewUser(user);
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
-                } catch (IOException ex) {
-                    Logger.getLogger(CinemaBookingSystem.class.getName()).log(Level.SEVERE, null, ex);
+//                    usr.writeNewUser(usr);
+                    usr.writeNewUser02(usr);
+                } catch (Exception ex ){
+                    System.err.println("error: "+ ex);
                 }
             }
         }); 

@@ -32,16 +32,11 @@ public class User {
         this.password = password;
 
     }
-<<<<<<< HEAD
 
-    User() {
-        
-=======
-    
     public User() {
         this.name = "none";
         this.password = "none";
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+
     }
 
 
@@ -68,7 +63,7 @@ public class User {
      * Write user info into .txt file
      * @param usr
      */
-<<<<<<< HEAD
+
     
     public void writeNewUser(User usr) throws IOException  {
         File f = new File("users.txt");
@@ -103,7 +98,8 @@ public class User {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, e);
         } catch (IOException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-=======
+        }
+    }
     public int checkUser(User usr) throws FileNotFoundException, IOException{
         File file = new File("users.txt");
         StringBuffer users = new StringBuffer();
@@ -113,7 +109,7 @@ public class User {
         // reads all lines
         while((text = br.readLine()) != null){
             users.append(text).append(System.getProperty("line.seperator"));
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+
         }
         br.close();
         
@@ -124,7 +120,7 @@ public class User {
         return 0;
     }
     
-<<<<<<< HEAD
+
 //    public void generateUsers() throws IOException {
 //        for (int i = 0; i < 10; i++) {
 //            String tmp = Integer.toString(i);
@@ -133,13 +129,14 @@ public class User {
 //        }
 //    }
     
-=======
-    public void writeNewUser(User usr) throws IOException {
+
+    public void writeNewUser02(User usr) throws IOException {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                       new FileOutputStream("users.txt"), "utf-8"))) {
-           writer.write(usr.getName()+" "+usr.getPassword()+"\n");
+           writer.write(usr.getName()+"Random"+usr.getPassword()+"Random\n");
         }
+        System.out.println("02");
         
     }
->>>>>>> 482d572399399c7a45c081585188bf82c25239fa
+
 }
