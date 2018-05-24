@@ -17,6 +17,13 @@ public class Cinema {
     public Cinema() {
     }
 
+    public Cinema(String Name, String Address, String location) {
+        this.Name = Name;
+        this.Address = Address;
+        this.location = location;
+    }
+
+
     public String getName() {
         return Name;
     }

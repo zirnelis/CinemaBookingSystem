@@ -6,11 +6,15 @@
 package database;
 
 
+import cinemabookingsystem.Movie;
+import cinemabookingsystem.Ticket;
 import java.sql.Connection;
 import com.mysql.jdbc.*;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -166,5 +170,96 @@ public class db {
         if(conn!=null) {
             conn.close();
         }
+    }
+     
+     public void writeInCinemaTable(String Name, String Location, String Address) throws SQLException {
+        String insert = "INSERT INT TABLE `cinema`("
+                + "`Name`,"
+                + "`Location`,"
+                + "`Address`) "
+                + "VALUES ("
+                + "`"+Name+"`, "
+                + "`"+Location+"`, "
+                + "`"+Address+"`)";
+        Connection conn = this.connect();
+        Statement stmt = (Statement) conn.createStatement();
+        stmt.execute(insert);
+        System.out.println("Ieraksts tabula tika veikts..");
+     }
+     
+     public void writeInMovieTable(String Movie, String Name, String Type, Date Date, Time Time, int Cinemaid) throws SQLException {
+        String insert = "INSERT INTO `movie`("
+                + "`Name`, "
+                + "`Type`, "
+                + "`Date`, "
+                + "`Time`, "
+                + "`Cinema_idCinema`) "
+                + "VALUES ("
+                + "`"+Movie+"`,"
+                + "`"+Name+"`,"
+                + "`"+Type+"`,"
+                + "`"+Date+"`,"
+                + "`"+Time+"`,"
+                + ""+Cinemaid+")";
+        Connection conn = this.connect();
+        Statement stmt = (Statement) conn.createStatement();
+        stmt.execute(insert);
+        System.out.println("Ieraksts tabula tika veikts..");
+     }
+     
+     public void writeInAuditoryTable(int row, int seat) throws SQLException {
+        String insert = "INSERT INTO `auditory`("
+                + "`Row`, "
+                + "`Seat`) "
+                + "VALUES ("
+                + ""+row+","
+                + ""+seat+")";
+        Connection conn = this.connect();
+        Statement stmt = (Statement) conn.createStatement();
+        stmt.execute(insert);
+        System.out.println("Ieraksts tabula tika veikts..");
+     }
+     
+     public void writeInTicketTable(Double Price, String Type, int Movieid, int MovieCinemaid, int Auditoryid) throws SQLException {
+        String insert = "INSERT INTO `ticket`("
+                + "`Price`, "
+                + "`Type`, "
+                + "`Movie_idMovie`, "
+                + "`Movie_Cinema_idCinema`, "
+                + "`Auditory_idAuditory`) "
+                + "VALUES ("
+                + ""+Price+","
+                + "`"+Type+"`,"
+                + ""+Movieid+","
+                + ""+MovieCinemaid+","
+                + ""+Auditoryid+")";
+        Connection conn = this.connect();
+        Statement stmt = (Statement) conn.createStatement();
+        stmt.execute(insert);
+        System.out.println("Ieraksts tabula tika veikts..");
+     }
+     
+     public ArrayList<Movie> selectAllMoviesSQL() throws SQLException {
+        ArrayList<Movie> movies = new ArrayList<>();
+        String nameTmp, typeTmp;
+        Date dateTmp;
+        Time timeTmp;
+        int cinemaidTmp;
+//        String selectDB = "USE mydb"; 
+        String select = "SELECT * FROM Movie"; 
+        
+        try (Connection conn = this.connect();
+            java.sql.PreparedStatement pstmt = conn.prepareStatement(select)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                nameTmp = rs.getString("Name");
+                typeTmp = rs.getString("Type");
+                dateTmp = rs.getDate("Date");
+                timeTmp = rs.getTime("Time");
+                cinemaidTmp = rs.getInt("Cinema_idCienema");
+                movies.add(new Movie(nameTmp, typeTmp, dateTmp, timeTmp, cinemaidTmp));
+            }
+        }
+        return movies;
     }
 }

@@ -4,11 +4,7 @@
 package cinemabookingsystem;
 
 
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,16 +22,11 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javax.swing.GroupLayout;
 
 /**
  *
@@ -55,35 +46,21 @@ public class CinemaBookingSystem extends Application {
     
     static User tempUsr; //to generate users
     
-
     User user;
+    
+    /**
+     * Kinoteātri Rīgā
+     * ForumCinemas, Cinamon, Multikino, Splendid palace
+     */
+    
+    Cinema ForumCinemas = new Cinema("Forum Cinemas", "56.9463449,24.1146488", "13. janvāra iela 8");
+    Cinema Cinamon = new Cinema("Cinamon", "56.984348,24.2019174", "Brīvības gatve 372");
+    Cinema Multikino = new Cinema("Multikino", "56.92786664,24.1010251", "Mūkusalas iela 71");
+    Cinema SplendidPalace = new Cinema("Splendid Palace", "56.953678,24.1172183", "Elizabetes iela 61");
+    
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-
-
-//        tempUsr = new User("meh", "123");
-//        tempUsr.writeNewUser(tempUsr);
-        
-
-        
-        /**
-         * "Hello world button form example"
-         */
-        //test changes
-//        Button btn = new Button();
-//        Button btn2 = new Button();
-//        btn.setText("Say 'Hello World'");
-//        btn2.setText("TestButton");
-//        call Action when button is pressed
-//        btn.setOnAction(new EventHandler<ActionEvent>() {
-            // Action method defined
-//            @Override
-//            public void handle(ActionEvent event) {
-//                System.out.println("Hello World!");
-//            }
-//        });
-        // Adding Grid to Scene
 
         GridPane loginGrid = new GridPane();
         loginGrid.setAlignment(Pos.CENTER);
@@ -138,11 +115,6 @@ public class CinemaBookingSystem extends Application {
         createBtn.setAlignment(Pos.CENTER_LEFT);
         loginGrid.add(createBtn, 2, 4);
         
-//        HBox hbBtn = new HBox(10);
-//        hbBtn.setAlignment(Pos.CENTER);
-//        hbBtn.getChildren().add(submitBtn);
-//        grid.add(hbBtn, 1, 4);
-        
         primaryStage.show();
         
         /**
@@ -176,7 +148,7 @@ public class CinemaBookingSystem extends Application {
         
         createBtn.setOnAction(new EventHandler<ActionEvent>(){
             User usr = new User(userTextField.getText(), passTextField.getText());
-            System.out.println(userTextField.getText()+" "+passTextField.getText());
+//            System.out.println(userTextField.getText()+" "+passTextField.getText());
 //            System.out.println(userTextField.getText() + " ");
             @Override
             public void handle(ActionEvent event) {

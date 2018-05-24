@@ -4,13 +4,7 @@
  * and open the template in the editor.
  */
 package cinemabookingsystem;
-import com.teamdev.jxbrowser.chromium.Browser;
-import com.teamdev.jxbrowser.*;
-import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 
-import javax.swing.*;
-import java.awt.*;
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
@@ -88,6 +82,7 @@ public class GoogleMapsSample extends Application{
         GoogleMapsSample.location = location;
     }
 
+    
     
 }
 
